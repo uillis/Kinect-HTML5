@@ -20,7 +20,7 @@ namespace Kinect.Server
         static void Main(string[] args)
         {
             InitializeConnection();
-            InitilizeKinect();
+            InitializeKinect();
 
             Console.ReadLine();
         }
@@ -46,10 +46,10 @@ namespace Kinect.Server
                     switch (message)
                     {
                         case "Color":
-                            _mode = Mode.Color;
+                     //       _mode = Mode.Color;
                             break;
                         case "Depth":
-                            _mode = Mode.Depth;
+                      //      _mode = Mode.Depth;
                             break;
                         default:
                             break;
@@ -60,14 +60,14 @@ namespace Kinect.Server
             });
         }
 
-        private static void InitilizeKinect()
+        private static void InitializeKinect()
         {
             var sensor = KinectSensor.KinectSensors.SingleOrDefault();
 
             if (sensor != null)
             {
-                sensor.ColorStream.Enable();
-                sensor.DepthStream.Enable();
+                //sensor.ColorStream.Enable();
+                //sensor.DepthStream.Enable();
                 sensor.SkeletonStream.Enable();
 
                 sensor.AllFramesReady += Sensor_AllFramesReady;

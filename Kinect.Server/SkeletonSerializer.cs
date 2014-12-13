@@ -46,6 +46,9 @@ namespace Kinect.Server
 
             [DataMember(Name = "z")]
             public double Z { get; set; }
+
+            [DataMember(Name = "confidence")]
+            public string Confidence { get; set; }
         }
 
         /// <summary>
@@ -92,7 +95,8 @@ namespace Kinect.Server
                         Name = joint.JointType.ToString().ToLower(),
                         X = point.X,
                         Y = point.Y,
-                        Z = joint.Position.Z
+                        Z = joint.Position.Z,
+                        Confidence = joint.TrackingState.ToString().ToLower()
                     });
                 }
 

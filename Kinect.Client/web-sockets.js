@@ -35,7 +35,7 @@
     socket.onmessage = function (event) {
         if (typeof event.data === "string") {
             // SKELETON DATA
-
+            context.clearRect(0, 0, canvas.width, canvas.height);
             // Get the data in JSON format.
             var jsonObject = JSON.parse(event.data);
 
