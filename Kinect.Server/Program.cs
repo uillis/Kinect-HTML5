@@ -46,10 +46,10 @@ namespace Kinect.Server
                     switch (message)
                     {
                         case "Color":
-                     //       _mode = Mode.Color;
+                            _mode = Mode.Color;
                             break;
                         case "Depth":
-                      //      _mode = Mode.Depth;
+                            _mode = Mode.Depth;
                             break;
                         default:
                             break;
@@ -66,6 +66,7 @@ namespace Kinect.Server
 
             if (sensor != null)
             {
+                //temp remove color / depth stuff
                 //sensor.ColorStream.Enable();
                 //sensor.DepthStream.Enable();
                 sensor.SkeletonStream.Enable();
@@ -80,7 +81,7 @@ namespace Kinect.Server
 
         static void Sensor_AllFramesReady(object sender, AllFramesReadyEventArgs e)
         {
-            using (var frame = e.OpenColorImageFrame())
+           /* using (var frame = e.OpenColorImageFrame())
             {
                 if (frame != null)
                 {
@@ -94,9 +95,9 @@ namespace Kinect.Server
                         }
                     }
                 }
-            }
+            }*/
 
-            using (var frame = e.OpenDepthImageFrame())
+           /* using (var frame = e.OpenDepthImageFrame())
             {
                 if (frame != null)
                 {
@@ -110,7 +111,7 @@ namespace Kinect.Server
                         }
                     }
                 }
-            }
+            }*/
 
             using (var frame = e.OpenSkeletonFrame())
             {
@@ -118,7 +119,7 @@ namespace Kinect.Server
                 {
                     frame.CopySkeletonDataTo(_skeletons);
 
-                    var users = _skeletons.Where(s => s.TrackingState == SkeletonTrackingState.Tracked).ToList();
+                    var users = _skeletons.Where(s => s.TrackingState == SkeletonTrackingState.Tracked || s.TrackingState == SkeletonTrackingState.PositionOnly).ToList();
 
                     if (users.Count > 0)
                     {

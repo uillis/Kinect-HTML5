@@ -28,6 +28,9 @@ namespace Kinect.Server
             [DataMember(Name = "id")]
             public string ID { get; set; }
 
+            [DataMember(Name = "confidence")]
+            public string Confidence { get; set; }
+
             [DataMember(Name = "joints")]
             public List<JSONJoint> Joints { get; set; }
         }
@@ -67,6 +70,7 @@ namespace Kinect.Server
                 JSONSkeleton jsonSkeleton = new JSONSkeleton
                 {
                     ID = skeleton.TrackingId.ToString(),
+                    Confidence = skeleton.TrackingState.ToString().ToLower(),
                     Joints = new List<JSONJoint>()
                 };
 
